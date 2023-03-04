@@ -27,38 +27,39 @@ OpenAI Whisper + OpenAI ChatGPT API + Google Text2Speech Service
 - Currently, only 1 background session at any time
 
 ### Requirements
+- Run the following command mannually or using scripts/install.sh
 ```
-# or using scripts/install.sh
 $ pip3 insntall -r requirements.txt
 $ apt install sox libsox-fmt-all lame
 $ mkdir record private audio
 ```
 
 ### Preparation (ChatGPT API Key)
+- Get your api key here: https://platform.openai.com/account/api-keys
 ```
-# Get your api key here: https://platform.openai.com/account/api-keys
 $ echo "{CHATGPT_ACCESS_KEY}" > private/api_keys
 ```
 
 ### Simple Run (ChatGPT + Text2Speech)
-you can input text and send to ChatGPT through API<br>
-then, you can hear the response
+- You can input text and send to ChatGPT through API
+- Then, you can hear the response
 ```
 $ ./scripts/run_simple.py
 ```
 
 ### ChatGPTAssistant in the background (Speech2Text + ChatGPT + Text2Speech)
+- Start/Restart a ChatGPT session (wait for your voice audio file in the background)
 ```
-# start/restart a ChatGPT session (wait for your voice audio file in the background)
 $ ./scripts/start_background_session.sh
-
-# stop the previous ChatGPT session if there is one
+```
+- Stop the previous ChatGPT session if there is one
+```
 $ ./scripts/stop_background_session.sh
 ```
 
 ### Record Your Voice for ChatGPTAssistant
+- Record voice through your microphone, and wait for ChatGPTAssistant's response
+- Start to record after it runs, ctrl+c when finished
 ```
-# record voice through your microphone, and wait for ChatGPTAssistant's response
-# start to record after it runs, ctrl+c when finished
 $ ./scripts/record_audio.py
 ```
