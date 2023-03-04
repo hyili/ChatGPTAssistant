@@ -1,23 +1,24 @@
 ChatGPT Assistant
 ===
-OpenAI Whisper + OpenAI ChatGPT API + Google Text2Speech Service
+A voice2voice chatgpt assistant<br>
+Constructed by using OpenAI Whisper + OpenAI ChatGPT API + Google Text2Speech Service
 
 ## Introduce
 - Speech2Text through OpenAI's Whisper Model (currently using local CPU)
 - Chat with ChatGPT through its API
 - Text2Speech through Google's Text2Speech Service
-- Cmdline tools
+- Related tools
     - sox: play the .mp3 files
     - arecord: record your voices through microphone (ubuntu default toolset)
     - lame: transform arecord's raw data to .mp3 file
 
 ## Attention
-- Whisper would automatically download model before use
+- Whisper would automatically download model for the first time
 - Make sure use a python virtual env before start
-- Currently, only 1 background session at any time
+- Currently, only 1 background session available at any time
 
 ## Requirements
-Run the following command mannually or using scripts/install.sh
+Run the following command manually or using scripts/install.sh
 ```
 $ pip3 insntall -r requirements.txt
 $ apt install sox libsox-fmt-all lame
@@ -31,7 +32,7 @@ $ echo "{CHATGPT_ACCESS_KEY}" > private/api_keys
 ```
 
 ## Simple Run (ChatGPT + Text2Speech)
-You can input text and send to ChatGPT through API
+You can input text and send to ChatGPT through API<br>
 Then, you can hear the response
 ```
 $ ./scripts/run_simple.sh
@@ -46,8 +47,7 @@ Stop the previous ChatGPT session if there is one
 ```
 $ ./scripts/stop_background_session.sh
 ```
-Record voice through your microphone, and wait for ChatGPTAssistant's response
-Start to record after it runs, ctrl+c when finished
+Start to record voice after it runs, ctrl+c when finished
 ```
 $ ./scripts/record_audio.sh
 ```
@@ -57,7 +57,7 @@ Under Construction ...
 ## TBD ...
 - keyboard shortcut to record the user's voice
 - keyboard shortcut to restart the ChatGPT session
-- able to load previous session from history
+- be able to load previous session from history
 - ...
 
 ## Reference Sites
