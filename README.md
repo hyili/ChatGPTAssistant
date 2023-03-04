@@ -24,6 +24,7 @@ OpenAI Whisper + OpenAI ChatGPT API + Google Text2Speech Service
 ### Attention
 - Whisper would automatically download model before use
 - Make sure use a python virtual env before start
+- Currently, only 1 background session at any time
 
 ### Requirements
 ```
@@ -39,11 +40,17 @@ $ echo "{CHATGPT_ACCESS_KEY}" > private/api_keys
 ### Run
 ```
 # you can input text and send to ChatGPT through API
+# then, you can hear the response
 $ ./scripts/run_simple.py
 
-# run_from_voice.py will wait for new audio file
-$ ./scripts/run_from_voice.py
+# start/restart a ChatGPT session (wait for your voice audio file in the background)
+$ ./scripts/start_background_session.sh
 
-# create another shell to run this, and record your speech through microphone (stop by using ctrl+c)
+# stop the previous ChatGPT session if there is one
+$ ./scripts/stop_background_session.sh
+
+# record voice through your microphone
+# start to record after it runs, ctrl+c when finished
+# then, if there is a background session, you can wait for the response
 $ ./scripts/record_audio.py
 ```

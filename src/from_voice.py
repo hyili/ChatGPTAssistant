@@ -13,6 +13,7 @@ def sig_handler(signum, frame):
     running = False
 
 signal.signal(signal.SIGINT, sig_handler)
+signal.signal(signal.SIGTERM, sig_handler)
 
 bot = ChatGPT.ChatGPT("You are a smart assistant. and your response should be as short as possible.", speech=True)
 vsens = Whisper.Whisper("small")
@@ -25,7 +26,6 @@ while running:
         line = vsens.speech2text(audio_path)
         bot.user_ask(line.rstrip())
     else:
-        print(" [-] Nothing new")
         time.sleep(1)
 
 bot.finalize()
