@@ -45,7 +45,7 @@ class ChatGPT:
 
         for choice in response["choices"]:
             resp_raw_data = choice["message"]
-            if choice["finish_reason"] == "stop":
+            if choice["finish_reason"] == "stop" or choice["finish_reason"] is None:
                 data = openai.util.convert_to_dict(resp_raw_data)
                 self.msg_hist.append(data)
                 self.print_content(data)
