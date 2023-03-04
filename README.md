@@ -11,16 +11,6 @@ OpenAI Whisper + OpenAI ChatGPT API + Google Text2Speech Service
     - arecord: record your voices through microphone (ubuntu default toolset)
     - lame: transform arecord's raw data to .mp3 file
 
-## Reference Sites
-- OpenAI ChatGPT API Keys
-    - https://platform.openai.com/account/api-keys
-- OpenAI ChatGPT Python Chat Completions
-    - https://platform.openai.com/docs/guides/chat
-- Google Translate
-    - https://py-googletrans.readthedocs.io/en/latest/
-- OpenAI Whisper
-    - https://github.com/openai/whisper
-
 ## Attention
 - Whisper would automatically download model before use
 - Make sure use a python virtual env before start
@@ -56,10 +46,27 @@ Stop the previous ChatGPT session if there is one
 ```
 $ ./scripts/stop_background_session.sh
 ```
-
-## Record Your Voice for ChatGPTAssistant
 Record voice through your microphone, and wait for ChatGPTAssistant's response
 Start to record after it runs, ctrl+c when finished
 ```
 $ ./scripts/record_audio.sh
 ```
+## ChatGPTAssistant UI (Speech2Text + ChatGPT + TextUI for response)
+Under Construction ...
+
+## TBD ...
+- keyboard shortcut to record the user's voice
+- keyboard shortcut to restart the ChatGPT session
+- able to load previous session from history
+- ...
+
+## Reference Sites
+- OpenAI ChatGPT API Keys
+    - https://platform.openai.com/account/api-keys
+- OpenAI ChatGPT Python Chat Completions
+    - https://platform.openai.com/docs/guides/chat
+- Google Translate
+    - https://py-googletrans.readthedocs.io/en/latest/
+- OpenAI Whisper
+    - https://github.com/openai/whisper
+
