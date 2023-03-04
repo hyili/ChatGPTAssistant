@@ -44,7 +44,7 @@ $ echo "{CHATGPT_ACCESS_KEY}" > private/api_keys
 You can input text and send to ChatGPT through API
 Then, you can hear the response
 ```
-$ ./scripts/run_simple.py
+$ ./scripts/run_simple.sh
 ```
 
 ## ChatGPTAssistant in the background (Speech2Text + ChatGPT + Text2Speech)
@@ -61,5 +61,5 @@ $ ./scripts/stop_background_session.sh
 Record voice through your microphone, and wait for ChatGPTAssistant's response
 Start to record after it runs, ctrl+c when finished
 ```
-$ ./scripts/record_audio.py
+$ ./scripts/record_audio.sh
 ```
