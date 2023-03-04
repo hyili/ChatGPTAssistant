@@ -58,10 +58,11 @@ class ChatGPT:
         self.usage["prompt_tokens"] += response["usage"]["prompt_tokens"]
         self.usage["completion_tokens"] += response["usage"]["completion_tokens"]
 
-    def __del__(self):
+    def finalize(self):
         with open(self.hist_path, "w") as hist:
             hist.write(str(self.msg_hist));
 
+    def __del__(self):
         print("Usage:")
         print("  Prompt Tokens:       ", self.usage["prompt_tokens"])
         print("  Completion Tokens:   ", self.usage["completion_tokens"])
