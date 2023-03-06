@@ -12,6 +12,9 @@ Constructed by using OpenAI Whisper + OpenAI ChatGPT API + Google Text2Speech Se
     - arecord: record your voices through microphone (ubuntu default toolset)
     - lame: transform arecord's raw data to .mp3 file
 
+## News
+- We can now ask ChatGPT to reset the session for us. Therefore it will clear out the current session, preventing spend the quota on unrelated history messages.
+
 ## Attention
 - Whisper would automatically download model for the first time
 - Make sure use a python virtual env before start
