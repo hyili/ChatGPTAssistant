@@ -8,12 +8,11 @@ Constructed by using OpenAI Whisper + OpenAI ChatGPT API + Google Text2Speech Se
 - Chat with ChatGPT through its API
 - Text2Speech through Google's Text2Speech Service
 - Related tools
-    - sox: play the .mp3 files
-    - arecord: record your voices through microphone (ubuntu default toolset)
-    - lame: transform arecord's raw data to .mp3 file
+    - sox: play the media files
 
 ## News
 - We can now ask ChatGPT to reset the session for us. Therefore it will clear out the current session, preventing spend the quota on unrelated history messages.
+- Use PyAudio instead of using arecord/lame which is only available for specific platform
 
 ## Attention
 - Whisper would automatically download model for the first time
@@ -24,7 +23,7 @@ Constructed by using OpenAI Whisper + OpenAI ChatGPT API + Google Text2Speech Se
 Run the following command manually or using scripts/install.sh
 ```
 $ pip3 insntall -r requirements.txt
-$ apt install sox libsox-fmt-all lame
+$ apt install sox libsox-fmt-all portaudio19-dev
 $ mkdir record private audio
 ```
 

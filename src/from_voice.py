@@ -19,7 +19,7 @@ bot = ChatGPT.ChatGPT("You are a smart assistant. your response should be as sho
 bot.set_commands(commands={"OK session reset.": bot.reset})
 vsens = Whisper.Whisper("small")
 audio_version_path = "audio/chatgpt_input.version"
-audio_path = "audio/chatgpt_input.mp3"
+audio_path = "audio/chatgpt_input.wav"
 
 print("Using ctrl+c to exit!")
 while running:
