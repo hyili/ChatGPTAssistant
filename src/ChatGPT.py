@@ -4,6 +4,7 @@ import openai
 import json
 import GT2S
 import datetime
+import re
 
 class ChatGPT:
     key_path="private/api_keys"
@@ -71,8 +72,9 @@ class ChatGPT:
                 self.print_content(data)
 
                 # run the provided handler if key exists
-                if (data["content"] in self.commands.keys()):
-                    self.commands[data["content"]]()
+                command = str(data["content"]).split(" Current Time: ")[0]
+                if (command in self.commands.keys()):
+                    self.commands[command]()
                 else:
                     self.msg_hist.append(data)
 

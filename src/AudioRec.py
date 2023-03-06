@@ -20,7 +20,7 @@ class AudioRec:
         pass
 
     def StartRecord(self):
-        print(" [o] Start recording ...")
+        print(" [o] Start recording ... (Ctrl + c to stop recording)")
         self.stream = self.ph.open(format=pyaudio.paInt16, channels=self.channels, rate=self.rate, input=True)
         self.frames.clear()
         for i in range(0, int(self.rate / self.chunks * self.seconds)):
@@ -46,12 +46,11 @@ class AudioRec:
         try:
             with open(version, "r") as v:
                 vno = int(v.readline())
-                vno += 1
         except Exception as e:
             pass
         finally:
             with open(version, "w") as v:
-                v.write("{0}\n".format(vno))
+                v.write("{0}\n".format(vno+1))
 
 
     def __del__(self):
