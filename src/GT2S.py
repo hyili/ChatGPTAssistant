@@ -19,7 +19,7 @@ class GT2S:
         self.gtrans_obj = self.gtranslator.detect(msg)
         self.gt2s_obj = GTTS(text=msg, lang=self.gtrans_obj.lang, slow=False)
         self.gt2s_obj.save(self.save_path+self.filename)
-        os.system("play {0} speed {1}".format(self.save_path+self.filename, speed))
+        os.system("play {0} speed {1} >> /dev/null 2>&1".format(self.save_path+self.filename, speed))
 
     def __del__(self):
         pass

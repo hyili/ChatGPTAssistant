@@ -12,4 +12,4 @@ VERSION_FILE="audio/chatgpt_input.version"
 #fi
 #echo $(($VERSION+1)) > $VERSION_FILE
 
-python3 src/AudioRec.py
+python3 src/AudioRec.py 2> /dev/null
