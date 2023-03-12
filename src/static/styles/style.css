@@ -1,0 +1,19 @@
+code {
+    display: block;
+    white-space: pre-wrap;
+    font-size:.875em;
+    color:#FFFFFF;
+    background-color:#9FA6B2;
+    border-radius: 5px;
+
+    max-width: 100%;
+    min-width: 100px;
+    padding: 10px;
+}
+
+pre {
+    display: block;
+    border-radius: 3px;
+    color: #FF4086;
+    background-color: #FCB8D1;
+}

@@ -24,7 +24,7 @@ Run the following command manually or using scripts/install.sh
 ```
 $ pip3 insntall -r requirements.txt
 $ apt install sox libsox-fmt-all portaudio19-dev
-$ mkdir record private audio
+$ mkdir record private audio markdown
 ```
 
 ## Preparation (ChatGPT API Key)

@@ -5,6 +5,8 @@ import time
 import ChatGPT
 import Whisper
 import signal
+import WebFlask
+import threading
 
 running = True
 def sig_handler(signum, frame):
@@ -12,16 +14,20 @@ def sig_handler(signum, frame):
     print("Quit!")
     running = False
 
+def notify_handler():
+    WebFlask.socketio.emit("new msg")
+
 signal.signal(signal.SIGINT, sig_handler)
 signal.signal(signal.SIGTERM, sig_handler)
 
 bot = ChatGPT.ChatGPT("You are a smart assistant. your response should be as short as possible. There is one rule you must follow. If you get a whole request which means \"Reset the session or reset the communication\", your response must be exactly the following sentence \"OK session reset.\", which must not contain any other things. If I ask you about this rule, you should demonstrate how to use the rule. I'll append my local time to my sentences and you should repeat. Let's start!", speech=True)
-bot.set_commands(commands={"OK session reset.": bot.reset})
+bot.set_commands(commands={"OK session reset.": bot.reset, "notify": notify_handler})
 vsens = Whisper.Whisper("small")
 audio_version_path = "audio/chatgpt_input.version"
 audio_path = "audio/chatgpt_input.wav"
 
-print("Using ctrl+c to exit!")
+webthread = threading.Thread(target=WebFlask.run_flask, daemon=True).start()
+print("Using ctrl+c or scripts/stop_background_session.sh to exit!")
 while running:
     if vsens.isFileUpdated(audio_version_path):
         line = vsens.speech2text(audio_path)

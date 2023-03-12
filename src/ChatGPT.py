@@ -5,11 +5,14 @@ import json
 import GT2S
 import datetime
 import re
+import markdown
 
 class ChatGPT:
     key_path="private/api_keys"
     base_hist_path="record/chat_hist_"
     hist_path=None
+    base_markdown_path="markdown/markdown.html"
+    markdown_path=None
     model="gpt-3.5-turbo"
     usage={"prompt_tokens": 0, "completion_tokens": 0}
     gt2s=None
@@ -46,9 +49,27 @@ class ChatGPT:
     def gen_hist_path(self):
         self.hist_path = self.base_hist_path + str(datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S"))
 
+    def gen_markdown_path(self):
+        self.markdown_path = self.base_markdown_path
+
+    def format_content(self, content):
+        return content.replace("\\\"", "\"").replace("\\n", "\n").replace("\\t", "\t").replace("\\r", "\r").lstrip("\"").rstrip("\"")
+
     def print_content(self, data):
-        msg = json.dumps(data["content"], indent=2, ensure_ascii=False)
+        msg = self.format_content(json.dumps(data["content"], indent=2, ensure_ascii=False))
         print(" [o] {0: <12} said: {1}".format(data["role"], msg))
+
+    def save_markdown(self):
+        self.gen_markdown_path()
+        with open(self.markdown_path, "w") as md:
+            for data in self.msg_hist:
+                msg = json.dumps(data["content"], indent=2, ensure_ascii=False)
+                msg = self.format_content(msg)
+                msg = "##### [*] {0} said:\n{1}".format(data["role"], msg)
+                msg = re.sub("(\n)+```", "\n```", msg)
+                msg = re.sub("```(\n)+", "```\n", msg)
+                msg = str(markdown.markdown(msg, extensions=['markdown.extensions.fenced_code', 'markdown.extensions.attr_list']))
+                md.write(msg)
 
     def reset(self):
         print(" [o] reset!")
@@ -73,11 +94,13 @@ class ChatGPT:
 
                 # run the provided handler if key exists
                 command = str(data["content"]).split(" Current Time: ")[0]
-                if (command in self.commands.keys()):
-                    self.commands[command]()
-                else:
+                if not self.exec_command(command):
                     self.msg_hist.append(data)
 
+                command = "notify"
+                self.exec_command(command)
+
+                self.save_markdown()
                 if self.gt2s is not None:
                     self.gt2s.text2speech(data["content"], 1.2)
             else:
@@ -86,6 +109,12 @@ class ChatGPT:
 
         self.usage["prompt_tokens"] += response["usage"]["prompt_tokens"]
         self.usage["completion_tokens"] += response["usage"]["completion_tokens"]
+
+    def exec_command(self, command):
+        if (command in self.commands.keys()):
+            self.commands[command]()
+            return True
+        return False
 
     def finalize(self):
         with open(self.hist_path, "w") as hist:
