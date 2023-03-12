@@ -11,8 +11,16 @@ Constructed by using OpenAI Whisper + OpenAI ChatGPT API + Google Text2Speech Se
     - sox: play the media files
 
 ## News
-- We can now ask ChatGPT to reset the session for us. Therefore it will clear out the current session, preventing spend the quota on unrelated history messages.
-- Use PyAudio instead of using arecord/lame which is only available for specific platform
+- 2023/03/12:
+    - SIMPLE WebUI support for chat history with automatically websocket notification
+    - Mute the code blocks before get into text2speech service
+- 2023/03/07:
+    - We can now ask ChatGPT to reset the session for us. Therefore it will clear out the current session, preventing spend the quota on unrelated history messages.
+    - Use PyAudio instead of using arecord/lame which is only available for specific platform
+
+## Known Issues:
+- 2023/03/12:
+    - Code blocks might be corrupted, if it contains "\n" "\t"
 
 ## Attention
 - Whisper would automatically download model for the first time
