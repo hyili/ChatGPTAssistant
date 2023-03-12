@@ -21,6 +21,7 @@ Constructed by using OpenAI Whisper + OpenAI ChatGPT API + Google Text2Speech Se
 ## Known Issues:
 - 2023/03/12:
     - Code blocks might be corrupted, if it contains "\n" "\t"
+    - Websocket active notify has large delay. Don't know why... need time to survey
 
 ## Attention
 - Whisper would automatically download model for the first time
