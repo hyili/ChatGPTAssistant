@@ -23,9 +23,13 @@ class ChatGPT:
     msg_hist = list()
 
     def __init__(self, system_msg, rules_msg, preload_hist=None, speech=False):
-        with open(self.key_path, "r") as priv:
-            api_key = priv.readline().rstrip('\n')
-            openai.api_key = api_key
+        try:
+            with open(self.key_path, "r") as priv:
+                api_key = priv.readline().rstrip('\n')
+                openai.api_key = api_key
+        except Exception as e:
+            print(" [x] Make sure you put your api key into the right place! e = {0}".format(str(e)))
+            raise(e)
 
         self.set_system_rules(system_msg, rules_msg)
         self.set_msg_hist(preload_hist)
