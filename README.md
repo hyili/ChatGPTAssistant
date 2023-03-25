@@ -7,10 +7,11 @@ Constructed by using OpenAI Whisper + OpenAI ChatGPT API + Google Text2Speech Se
 - Speech2Text through OpenAI's Whisper Model (currently using local CPU)
 - Chat with ChatGPT through its API
 - Text2Speech through Google's Text2Speech Service
-- Related tools
-    - sox: play the media files
 
 ## News
+- 2023/03/26:
+    - Replace sox with pydub for playing the speech from Google
+    - Move the prompting from system to user role, which is more effective
 - 2023/03/12:
     - SIMPLE WebUI support for chat history with automatically websocket notification
     - Mute the code blocks before get into text2speech service
@@ -32,7 +33,7 @@ Constructed by using OpenAI Whisper + OpenAI ChatGPT API + Google Text2Speech Se
 Run the following command manually or using scripts/install.sh
 ```
 $ pip3 insntall -r requirements.txt
-$ apt install sox libsox-fmt-all portaudio19-dev
+$ apt install portaudio19-dev
 $ mkdir record private audio markdown
 ```
 

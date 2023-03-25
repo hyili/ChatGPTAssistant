@@ -8,5 +8,5 @@ if [ -f "$PIDPATH" ]; then
 fi
 
 rm -f audio/*
-python3 src/from_voice.py &
+python3 src/from_voice.py 2>/dev/null &
 echo "$!" > $PIDPATH

@@ -19,14 +19,15 @@ class ChatGPT:
     commands= dict()
 
     system_msg = None
+    rules_msg = None
     msg_hist = list()
 
-    def __init__(self, system_msg, preload_hist=None, speech=False):
+    def __init__(self, system_msg, rules_msg, preload_hist=None, speech=False):
         with open(self.key_path, "r") as priv:
             api_key = priv.readline().rstrip('\n')
             openai.api_key = api_key
 
-        self.set_system_msg(system_msg)
+        self.set_system_rules(system_msg, rules_msg)
         self.set_msg_hist(preload_hist)
         self.gen_hist_path()
         self.speech = speech
@@ -36,8 +37,9 @@ class ChatGPT:
     def set_commands(self, commands={}):
         self.commands.update(commands)
 
-    def set_system_msg(self, system_msg):
+    def set_system_rules(self, system_msg, rules_msg):
         self.system_msg = system_msg
+        self.rules_msg = rules_msg
 
     def set_msg_hist(self, preload_hist=None):
         self.msg_hist.clear()
@@ -45,6 +47,7 @@ class ChatGPT:
             self.msg_hist.update(preload_hist)
         else:
             self.msg_hist.append({"content": self.system_msg, "role": "system"})
+            self.msg_hist.append({"content": self.rules_msg, "role": "user"})
 
     def gen_hist_path(self):
         self.hist_path = self.base_hist_path + str(datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S"))
