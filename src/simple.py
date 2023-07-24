@@ -3,7 +3,7 @@
 import sys
 import ChatGPT
 
-bot = ChatGPT.ChatGPT("You are an smart assistant. and your response should be as short as possible.", speech=True)
+bot = ChatGPT.ChatGPT(system_msg="", speech=True, rules_msg="You are an smart assistant. and your response should be as short as possible.")
 
 print("Using \"quit\" or ctrl+c to exit!")
 print("Input: ",end='', flush=True)

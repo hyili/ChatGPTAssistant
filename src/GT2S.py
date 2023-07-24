@@ -40,5 +40,17 @@ class GT2S:
         #self.gt2s_obj.save(self.save_path+self.filename)
         #os.system("play {0} speed {1} >> /dev/null 2>&1".format(self.save_path+self.filename, speed))
 
+    def text2speechfile(self, msg, filename, speed=1):
+        msg = self.remove_codeblock(msg)
+        self.gtrans_obj = self.gtranslator.detect(msg)
+        self.gt2s_obj = GTTS(text=msg, lang=self.gtrans_obj.lang, slow=False)
+        mem = BytesIO()
+        self.gt2s_obj.write_to_fp(mem)
+        mem.seek(0)
+        s = AudioSegment.from_mp3(mem)
+        news = self.set_speed(s, speed)
+        play(news)
+        news.export(self.save_path+filename, format="mp3")
+
     def __del__(self):
         pass
